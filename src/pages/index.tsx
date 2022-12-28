@@ -49,7 +49,7 @@ export default function Home() {
           In order to get started, please fill in the following form. Not sure
           where to start? Have a look at the{" "}
           <a
-            href="https://github.com/pradel/ceramic-multi-users/blob/main/src/pages/action.tsx"
+            href="https://github.com/pradel/ceramic-multi-users#ceramic-multi-users"
             target="_blank"
             rel="noreferrer"
           >
