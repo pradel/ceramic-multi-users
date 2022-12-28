@@ -107,7 +107,7 @@ After the membership is created, the user can now interact with the Lit Action.
 
 Now let's try it out!
 
-1. Go to TODO
+1. Go to https://ceramic-multi-users.vercel.app/
 2. Fill out the form with the information obtained in the previous steps
 3. Click "Submit"
 4. Write a new description for the Orbis profile and click on "Execute Lit Action"
