@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 patchedDependencies:
   key-did-provider-secp256k1-with-lit@0.1.2:
-    hash: pgtiktl7bsvsk77n4shx7xndgq
+    hash: aewdnjomeghjgrprci3tjnzhne
     path: patches/key-did-provider-secp256k1-with-lit@0.1.2.patch
 
 specifiers:
@@ -47,7 +47,7 @@ dependencies:
   eslint: 8.30.0
   eslint-config-next: 13.1.1_lzzuuodtsqwxnvqeq4g4likcqa
   ethers: 5.7.2
-  key-did-provider-secp256k1-with-lit: 0.1.2_pgtiktl7bsvsk77n4shx7xndgq
+  key-did-provider-secp256k1-with-lit: 0.1.2_aewdnjomeghjgrprci3tjnzhne
   key-did-resolver: 2.3.0
   next: 13.1.1_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -4824,7 +4824,7 @@ packages:
       uint8arrays: 3.1.1
     dev: false
 
-  /key-did-provider-secp256k1-with-lit/0.1.2_pgtiktl7bsvsk77n4shx7xndgq:
+  /key-did-provider-secp256k1-with-lit/0.1.2_aewdnjomeghjgrprci3tjnzhne:
     resolution: {integrity: sha512-P5YxB0oUj11uElx9dl+7+tS6ATx6SOIsaJhbCK8OC3btAr3hYEwtqxyS5vcFS5M+pB+ZEsPzKMxP7G2pr2+EJQ==}
     engines: {node: '>=14.14'}
     dependencies:
