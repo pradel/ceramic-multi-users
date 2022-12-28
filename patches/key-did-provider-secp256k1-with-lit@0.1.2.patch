@@ -1,0 +1,23 @@
+diff --git a/dist/index.js b/dist/index.js
+index 1bb92d036f3aba03ab31d614d79d014cde864ba0..087aab5bef84ecf534cdedf50780d1b2b62128df 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -7,15 +7,16 @@ import { toGeneralJWS, toJose, toStableObject, sha256, log } from "./util.js";
+ const ec = new elliptic.ec("secp256k1");
+ export const litActionSignAndGetSignature = async (sha256Payload, context) => {
+     log("[litActionSignAndGetSignature] sha256Payload: ", sha256Payload);
+-    const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: "ethereum" });
++    const authSig = await LitJsSdk.checkAndSignAuthMessage({ chain: "mumbai" });
+     log("[litActionSignAndGetSignature] authSig:", authSig);
+     const litNodeClient = new LitJsSdk.LitNodeClient({ litNetwork: "serrano" });
+     await litNodeClient.connect();
+     log("[litActionSignAndGetSignature] ipfsId:", context.ipfsId);
+     const jsParams = {
+         toSign: Array.from(sha256Payload),
+-        keyId: getPubKeyFromEncodedDID(context.did),
++        publicKey: getPubKeyFromEncodedDID(context.did),
+         sigName: "sig1",
++        authSig,
+     };
+     log("[litActionSignAndGetSignature] jsParams:", jsParams);
+     const executeOptions = {
