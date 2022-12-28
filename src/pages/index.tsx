@@ -46,7 +46,16 @@ export default function Home() {
           Get Started
         </Title>
         <Text fz="sm" c="dimmed">
-          In order to get started, please fill in the following form.
+          In order to get started, please fill in the following form. Not sure
+          where to start? Have a look at the{" "}
+          <a
+            href="https://github.com/pradel/ceramic-multi-users/blob/main/src/pages/action.tsx"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Documentation
+          </a>{" "}
+          on GitHub.
         </Text>
 
         <form onSubmit={handleSubmit}>
