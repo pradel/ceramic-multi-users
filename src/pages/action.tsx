@@ -22,10 +22,12 @@ import { forceIndexDid } from "@orbisclub/orbis-sdk/utils";
 import { useAccount } from "wagmi";
 import { AppHeader } from "../components/AppHeader";
 import { ConnectKitButton } from "connectkit";
+import { useIsMounted } from "../components/hooks";
 
 export default function Home() {
   const router = useRouter();
   const { address, isConnecting, isDisconnected } = useAccount();
+  const isMounted = useIsMounted();
   const [encodedDID, setEncodedDid] = useState<string>();
   const [didError, setDidError] = useState<string>();
   const [formError, setFormError] = useState<string>();
@@ -175,13 +177,13 @@ export default function Home() {
           </>
         )}
 
-        {isDisconnected && !isConnecting && (
+        {isMounted && isDisconnected && !isConnecting && (
           <Stack align="center" mt="lg" mb="lg" spacing="sm">
             <ConnectKitButton />
           </Stack>
         )}
 
-        {address && (
+        {address && isMounted && (
           <form onSubmit={handleSubmit}>
             <Textarea
               mt="lg"
