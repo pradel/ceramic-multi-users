@@ -18,15 +18,19 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Orbis } from "@orbisclub/orbis-sdk";
 import { forceIndexDid } from "@orbisclub/orbis-sdk/utils";
-import { AppNavbar } from "../components/AppNavbar";
+import { useAccount } from "wagmi";
+import { AppHeader } from "../components/AppHeader";
 
 export default function Home() {
   const router = useRouter();
+  const { address, isConnecting, isDisconnected } = useAccount();
   const [encodedDID, setEncodedDid] = useState<string>();
   const [didError, setDidError] = useState<string>();
   const [formError, setFormError] = useState<string>();
   const [formLoading, setFormLoading] = useState<boolean>(false);
   const [formSuccess, setFormSuccess] = useState<boolean>(false);
+
+  console.log(address, isConnecting, isDisconnected);
 
   // When page load we get the DID from the PKP public Key
   useEffect(() => {
@@ -111,8 +115,9 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <AppNavbar />
+    <>
+      {/* <AppNavbar /> */}
+      <AppHeader />
 
       <Container size="xs">
         <Title order={2} mt="lg">
@@ -219,6 +224,6 @@ export default function Home() {
           </Group>
         </form>
       </Container>
-    </div>
+    </>
   );
 }

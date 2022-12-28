@@ -7,9 +7,9 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import { AppNavbar } from "../components/AppNavbar";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { AppHeader } from "../components/AppHeader";
 
 const ipfsId = "QmeV6rLfZRZyuCJy9UdVFGGmcyrzTjzVoDmR5Dj5q8EMQB";
 const pkpPublicKey =
@@ -38,8 +38,8 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <AppNavbar />
+    <>
+      <AppHeader />
 
       <Container size="xs">
         <Title order={2} mt="lg">
@@ -100,6 +100,6 @@ export default function Home() {
           </Group>
         </form>
       </Container>
-    </div>
+    </>
   );
 }
