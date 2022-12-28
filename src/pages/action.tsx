@@ -4,6 +4,7 @@ import {
   Container,
   Group,
   Loader,
+  Stack,
   Text,
   Textarea,
   Title,
@@ -20,6 +21,7 @@ import { Orbis } from "@orbisclub/orbis-sdk";
 import { forceIndexDid } from "@orbisclub/orbis-sdk/utils";
 import { useAccount } from "wagmi";
 import { AppHeader } from "../components/AppHeader";
+import { ConnectKitButton } from "connectkit";
 
 export default function Home() {
   const router = useRouter();
@@ -29,8 +31,6 @@ export default function Home() {
   const [formError, setFormError] = useState<string>();
   const [formLoading, setFormLoading] = useState<boolean>(false);
   const [formSuccess, setFormSuccess] = useState<boolean>(false);
-
-  console.log(address, isConnecting, isDisconnected);
 
   // When page load we get the DID from the PKP public Key
   useEffect(() => {
@@ -116,7 +116,6 @@ export default function Home() {
 
   return (
     <>
-      {/* <AppNavbar /> */}
       <AppHeader />
 
       <Container size="xs">
@@ -176,53 +175,61 @@ export default function Home() {
           </>
         )}
 
-        <form onSubmit={handleSubmit}>
-          <Textarea
-            mt="lg"
-            id="orbis-description"
-            placeholder="Description..."
-            label="Your new Orbis description"
-            withAsterisk
-          />
+        {isDisconnected && !isConnecting && (
+          <Stack align="center" mt="lg" mb="lg" spacing="sm">
+            <ConnectKitButton />
+          </Stack>
+        )}
 
-          {formError && (
-            <Alert mt="lg" title="Error" color="red">
-              {formError}
-            </Alert>
-          )}
+        {address && (
+          <form onSubmit={handleSubmit}>
+            <Textarea
+              mt="lg"
+              id="orbis-description"
+              placeholder="Description..."
+              label="Your new Orbis description"
+              withAsterisk
+            />
 
-          {formLoading && (
-            <Group mt="lg" position="center">
-              <Loader />
-            </Group>
-          )}
+            {formError && (
+              <Alert mt="lg" title="Error" color="red">
+                {formError}
+              </Alert>
+            )}
 
-          {formSuccess && (
-            <Alert mt="lg" title="Profile Updated" color="green">
-              Orbis Profile updated successfully. You can view the new profile
-              description on the{" "}
-              <a
-                href={`https://app.orbis.club/profile/${encodedDID}`}
-                target="_blank"
-                rel="noreferrer"
+            {formLoading && (
+              <Group mt="lg" position="center">
+                <Loader />
+              </Group>
+            )}
+
+            {formSuccess && (
+              <Alert mt="lg" title="Profile Updated" color="green">
+                Orbis Profile updated successfully. You can view the new profile
+                description on the{" "}
+                <a
+                  href={`https://app.orbis.club/profile/${encodedDID}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  PKP Orbis profile page
+                </a>
+                .
+              </Alert>
+            )}
+
+            <Stack align="center" mt="lg" mb="lg" spacing="sm">
+              <Button
+                variant="gradient"
+                gradient={{ from: "blue", to: "violet" }}
+                type="submit"
+                disabled={formLoading}
               >
-                PKP Orbis profile page
-              </a>
-              .
-            </Alert>
-          )}
-
-          <Group position="center" mt="lg" mb="lg">
-            <Button
-              variant="gradient"
-              gradient={{ from: "blue", to: "violet" }}
-              type="submit"
-              disabled={formLoading}
-            >
-              Execute Lit Action
-            </Button>
-          </Group>
-        </form>
+                Execute Lit Action
+              </Button>
+            </Stack>
+          </form>
+        )}
       </Container>
     </>
   );
