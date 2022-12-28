@@ -1,5 +1,5 @@
 diff --git a/dist/index.js b/dist/index.js
-index 1bb92d036f3aba03ab31d614d79d014cde864ba0..087aab5bef84ecf534cdedf50780d1b2b62128df 100644
+index 1bb92d036f3aba03ab31d614d79d014cde864ba0..215276ed87bfa35eb470c1035cb3474d47a247bb 100644
 --- a/dist/index.js
 +++ b/dist/index.js
 @@ -7,15 +7,16 @@ import { toGeneralJWS, toJose, toStableObject, sha256, log } from "./util.js";
@@ -21,3 +21,13 @@ index 1bb92d036f3aba03ab31d614d79d014cde864ba0..087aab5bef84ecf534cdedf50780d1b2
      };
      log("[litActionSignAndGetSignature] jsParams:", jsParams);
      const executeOptions = {
+@@ -27,6 +28,9 @@ export const litActionSignAndGetSignature = async (sha256Payload, context) => {
+     const res = await litNodeClient.executeJs(executeOptions);
+     log("[litActionSignAndGetSignature] res.signatures:", res.signatures);
+     const signature = res.signatures;
++    if (typeof signature === 'object' && Object.keys(signature).length === 0) {
++        throw Error('Unauthorized to sign');
++    }
+     return {
+         r: signature.sig1.r,
+         s: signature.sig1.s,
