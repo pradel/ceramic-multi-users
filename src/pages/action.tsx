@@ -81,7 +81,11 @@ export default function Home() {
     } catch (error) {
       setFormLoading(false);
       console.error(error);
-      setFormError("DID authentication failed with error: " + error.message);
+      if (error.message === "Unauthorized to sign") {
+        setFormError("Unauthorized: user is not part of the team");
+      } else {
+        setFormError("DID authentication failed with error: " + error.message);
+      }
       return;
     }
 
