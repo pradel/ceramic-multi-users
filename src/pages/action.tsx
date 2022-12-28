@@ -123,7 +123,15 @@ export default function Home() {
           Action. The Lit Action will check if you have an active membership in
           the Team, and if you do, it will connect you to ceramic and use the
           Orbis SDK to update the PKP profile description. You can then see on
-          the Orbis website that the description has been updated.
+          the Orbis website that the description has been updated. Inspect the{" "}
+          <a
+            href="https://github.com/pradel/ceramic-multi-users/blob/main/src/pages/action.tsx"
+            target="_blank"
+            rel="noreferrer"
+          >
+            code
+          </a>
+          .
         </Text>
         <Text fz="sm" c="dimmed">
           You can use the same logic to create a new Post or anything else the
@@ -150,12 +158,17 @@ export default function Home() {
           </Group>
         )}
         {encodedDID && (
-          <Group spacing={0}>
+          <>
             <Title mt="lg" order={5}>
-              DID from the PKP
+              PKP DID
             </Title>
+            <Text fz="xs" c="dimmed">
+              This is the encoded DID extracted from the PKP public key. It
+              represents your PKP identity that you can see on Orbis Club and
+              other apps.
+            </Text>
             <Text>{encodedDID}</Text>
-          </Group>
+          </>
         )}
 
         <form onSubmit={handleSubmit}>
@@ -194,7 +207,7 @@ export default function Home() {
             </Alert>
           )}
 
-          <Group position="center" mt="lg">
+          <Group position="center" mt="lg" mb="lg">
             <Button
               variant="gradient"
               gradient={{ from: "blue", to: "violet" }}
