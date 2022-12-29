@@ -102,7 +102,9 @@ export default function Home() {
     orbis.session.id = did.id;
     try {
       await forceIndexDid(did.id);
-      await orbis.updateProfile({ description: orbisDescription });
+      await orbis.updateProfile({
+        description: `${orbisDescription} - updated by ${address}`,
+      });
     } catch (error) {
       setFormLoading(false);
       console.error(error);
